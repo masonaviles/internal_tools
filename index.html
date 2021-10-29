@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scorbunny</title>
+
+	<!-- Tailwind CDN -->
+	<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body>
+    <main class="main">
+		<section class="flex justify-center h-16 bg-gray-200 pt-5">
+			<h1 class="">Internal Tools Bookmarklets</h1>
+		</section>
+		<section class="container mx-auto mt-5">
+			<p class="text-center block mb-5">Drag and Drop to your Bookmark bar:</p>
+			<div class="block mx-auto w-1/2 bg-gray-100 p-5">
+				<a class="w-1/2 mb-2 mx-auto block text-center bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded" href="javascript:(function(){
+					var textToSave = document.body.innerText;
+					var docTitle = document.title;
+				
+					var hiddenElement = document.createElement('a');
+				
+					hiddenElement.href = 'data:attachment/text,' + encodeURI(textToSave);
+					hiddenElement.target = '_blank';
+					hiddenElement.download = `copy_content_${docTitle}.txt`;
+					hiddenElement.click();
+				
+				})();">Download Copy Bookmark</a>
+				<p class="text-center">This bookmarklet downloads all the copy of a page and saves it as a .txt file</p>
+			</div>
+		</section>
+	</main>
+</body>
+</html>
