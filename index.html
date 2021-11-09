@@ -17,16 +17,26 @@
 		<section class="container mx-auto mt-5">
 			<p class="text-center block mb-5">Drag and Drop to your Bookmark bar:</p>
 			<div class="block mx-auto w-1/2 bg-gray-100 p-5">
-				<a class="w-1/2 mb-2 mx-auto block text-center bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded" href="javascript:(function(){
-					var textToSave = document.body.innerText;
-					var docTitle = document.title;
+				<a class="w-1/2 mb-2 mx-auto block text-center bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded" 
+				href="javascript:(function(){
+					let text = document.body.innerText;
+					let headers = document.querySelectorAll('h1, h2, h3, h4, h5, h6'), i;
 				
-					var hiddenElement = document.createElement('a');
+					for (i = 0; i < headers.length; ++i) {
+						headers[i].innerText = '**========[HEADER]========** ' + headers[i].innerText + ' **========[HEADER END]========**';
+					}
 				
-					hiddenElement.href = 'data:attachment/text,' + encodeURI(textToSave);
-					hiddenElement.target = '_blank';
-					hiddenElement.download = `copy_content_${docTitle}.txt`;
-					hiddenElement.click();
+					function download_txt() {
+						var textToSave = document.body.innerText;
+						var hiddenElement = document.createElement('a');
+					
+						hiddenElement.href = 'data:attachment/text,' + encodeURI(textToSave);
+						hiddenElement.target = '_blank';
+						hiddenElement.download = 'copy.txt';
+						hiddenElement.click();
+					}
+				
+					download_txt();
 				
 				})();">Download Copy Bookmark</a>
 				<p class="text-center">This bookmarklet downloads all the copy of a page and saves it as a .rtf file</p>
